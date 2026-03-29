@@ -1,7 +1,7 @@
 package com.example.demo.seeders;
 
 import com.example.demo.controllers.ProductoController;
-import com.example.demo.models.Producto;
+import com.example.demo.models.tenant.Producto;
 import com.example.demo.repositories.ProductoRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        seedersProducto();
+        // seedersProducto();
     }
 
     public void seedersProducto() {

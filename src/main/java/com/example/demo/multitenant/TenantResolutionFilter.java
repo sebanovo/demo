@@ -19,7 +19,7 @@ public class TenantResolutionFilter extends OncePerRequestFilter {
         String method = request.getMethod();
 
         // Allow creating tenants without tenant header
-        if ("/tenant".equals(path) && "POST".equalsIgnoreCase(method)) {
+        if ("/register-tenant".equals(path) && "POST".equalsIgnoreCase(method)) {
             try {
                 filterChain.doFilter(request, response);
             } finally {

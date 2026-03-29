@@ -13,7 +13,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
@@ -24,3 +24,5 @@ spring:
     enabled: true
     # Esto permite que Flyway cree la tabla flyway_schema_history si la DB ya tiene tablas
     baseline-on-migrate: true
+    # Ubicación de migraciones para el esquema público (se ejecuta al arrancar la app)
+    locations: classpath:db/migration/shared

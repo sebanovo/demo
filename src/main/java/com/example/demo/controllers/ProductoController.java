@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.Producto;
+import com.example.demo.models.tenant.Producto;
 import com.example.demo.repositories.ProductoRepository;
 
 import org.springframework.http.HttpStatus;

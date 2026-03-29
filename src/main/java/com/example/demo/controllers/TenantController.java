@@ -1,25 +1,46 @@
 package com.example.demo.controllers;
 
-import com.example.demo.services.TenantService;
+import com.example.demo.models.shared.Tenant;
+import com.example.demo.repositories.TenantRepository;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/tenant")
+@RequestMapping("/tenants")
 public class TenantController {
-    private final TenantService tenantService;
 
-    public TenantController(TenantService tenantService) {
-        this.tenantService = tenantService;
+    private final TenantRepository tenantRepository;
+
+    public TenantController(TenantRepository tenantRepository) {
+        this.tenantRepository = tenantRepository;
     }
 
+    // GET: listar todos los productos
+    @GetMapping
+    public List<Tenant> listar() {
+        return tenantRepository.findAll();
+    }
+
+    // POST: crear un nuevo producto
+    @SuppressWarnings("null")
     @PostMapping
-    public ResponseEntity<String> createTenant(@RequestBody TenantRequest request) {
-        String name = request.getName();
-        tenantService.createTenant(name);
-        return ResponseEntity.status(201).body("Tenant creado: " + name);
+    public Tenant crear(@RequestBody Tenant producto) {
+        return tenantRepository.save(producto);
+    }
+
+    @SuppressWarnings("null")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminar(@PathVariable String id) {
+        try {
+            tenantRepository.deleteById(id);
+            return ResponseEntity.ok("Item deleted");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item not found, cannot delete");
+        }
     }
 }
