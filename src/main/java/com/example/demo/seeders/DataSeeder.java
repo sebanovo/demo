@@ -9,12 +9,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataSeeder implements CommandLineRunner {
 
-    private final ProductoController productoController;
     private final ProductoRepository productoRepository;
 
     public DataSeeder(ProductoRepository productoRepository, ProductoController productoController) {
         this.productoRepository = productoRepository;
-        this.productoController = productoController;
     }
 
     @Override

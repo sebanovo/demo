@@ -18,3 +18,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    # Por defecto es true, pero es bueno tenerlo explícito
+    enabled: true
+    # Esto permite que Flyway cree la tabla flyway_schema_history si la DB ya tiene tablas
+    baseline-on-migrate: true
