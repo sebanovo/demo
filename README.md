@@ -14,29 +14,34 @@
                         └── 📁demo
                             └── 📁config
                                 ├── MultiTenantConfig.java
-                            └── 📁controllers
-                                ├── ProductoController.java
-                                ├── TenantAdminController.java
-                                ├── TenantController.java
-                                ├── TenantRequest.java
-                            └── 📁models
-                                └── 📁shared
-                                    ├── Tenant.java
-                                └── 📁tenant
-                                    ├── Producto.java
-                                    ├── Venta.java
                             └── 📁multitenant
                                 ├── DataSourceBasedMultiTenantConnectionProviderImpl.java
                                 ├── TenantContext.java
                                 ├── TenantIdentifierResolver.java
                                 ├── TenantResolutionFilter.java
-                            └── 📁repositories
-                                ├── ProductoRepository.java
-                                ├── TenantRepository.java
                             └── 📁seeders
                                 ├── DataSeeder.java
-                            └── 📁services
-                                ├── TenantService.java
+                            └── 📁shared
+                                └── 📁controller
+                                    ├── TenantAdminController.java
+                                    ├── TenantController.java
+                                └── 📁model
+                                    ├── Tenant.java
+                                └── 📁repository
+                                    ├── TenantRepository.java
+                                └── 📁service
+                                    ├── TenantService.java
+                            └── 📁tenant
+                                └── 📁controller
+                                    ├── ProductoController.java
+                                    ├── VentaController.java
+                                └── 📁model
+                                    ├── Producto.java
+                                    ├── Venta.java
+                                └── 📁repository
+                                    ├── ProductoRepository.java
+                                    ├── VentaRepository.java
+                                └── 📁service
                             ├── DemoApplication.java
             └── 📁resources
                 └── 📁db
@@ -51,7 +56,6 @@
                         ├── logo_y_nombre.png
                         ├── logo.png
                     ├── mark.jpg
-                └── 📁templates
                 ├── application.yml
         └── 📁test
             └── 📁java
@@ -66,33 +70,39 @@
                     └── 📁demo
                         └── 📁config
                             ├── MultiTenantConfig.class
-                        └── 📁controllers
-                            ├── ProductoController.class
-                            ├── TenantAdminController.class
-                            ├── TenantController.class
-                            ├── TenantRequest.class
-                        └── 📁models
-                            └── 📁shared
-                                ├── Tenant.class
-                            └── 📁tenant
-                                ├── Producto.class
-                                ├── Venta.class
                         └── 📁multitenant
                             ├── DataSourceBasedMultiTenantConnectionProviderImpl.class
                             ├── TenantContext.class
                             ├── TenantIdentifierResolver.class
                             ├── TenantResolutionFilter.class
-                        └── 📁repositories
-                            ├── ProductoRepository.class
-                            ├── TenantRepository.class
                         └── 📁seeders
                             ├── DataSeeder.class
-                        └── 📁services
-                            ├── TenantService.class
+                        └── 📁shared
+                            └── 📁controller
+                                ├── TenantAdminController.class
+                                ├── TenantController.class
+                                ├── TenantRequest.class
+                            └── 📁model
+                                ├── Tenant.class
+                            └── 📁repository
+                                ├── TenantRepository.class
+                            └── 📁service
+                                ├── TenantService.class
+                        └── 📁tenant
+                            └── 📁controller
+                                ├── ProductoController.class
+                                ├── VentaController.class
+                                ├── VentaRequest.class
+                            └── 📁model
+                                ├── Producto.class
+                                ├── Venta.class
+                            └── 📁repository
+                                ├── ProductoRepository.class
+                                ├── VentaRepository.class
+                            └── 📁service
                         ├── DemoApplication.class
             └── 📁db
                 └── 📁migration
-                    └── 📁public
                     └── 📁shared
                         ├── V1__init.sql
                     └── 📁tenant
@@ -117,5 +127,6 @@
     ├── HELP.md
     ├── mvnw
     ├── mvnw.cmd
-    └── pom.xml
+    ├── pom.xml
+    └── README.md
 ```
