@@ -1,8 +1,8 @@
-package com.example.demo.controllers;
+package com.example.demo.shared.controller;
 
-import com.example.demo.models.shared.Tenant;
-import com.example.demo.repositories.TenantRepository;
-import com.example.demo.services.TenantService;
+import com.example.demo.shared.model.Tenant;
+import com.example.demo.shared.repository.TenantRepository;
+import com.example.demo.shared.service.TenantService;
 
 import java.time.LocalDate;
 

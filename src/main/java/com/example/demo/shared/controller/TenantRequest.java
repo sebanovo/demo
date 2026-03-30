@@ -1,4 +1,4 @@
-package com.example.demo.controllers;
+package com.example.demo.shared.controller;
 
 public class TenantRequest {
     private String name;

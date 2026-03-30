@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.example.demo.shared.service;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.stereotype.Service;

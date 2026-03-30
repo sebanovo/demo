@@ -1,4 +1,4 @@
-package com.example.demo.models.shared;
+package com.example.demo.shared.model;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;

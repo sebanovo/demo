@@ -1,4 +1,4 @@
-package com.example.demo.models.tenant;
+package com.example.demo.tenant.model;
 
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;

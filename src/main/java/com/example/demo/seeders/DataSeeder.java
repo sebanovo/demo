@@ -1,8 +1,9 @@
 package com.example.demo.seeders;
 
-import com.example.demo.controllers.ProductoController;
-import com.example.demo.models.tenant.Producto;
-import com.example.demo.repositories.ProductoRepository;
+import com.example.demo.tenant.controller.ProductoController;
+import com.example.demo.tenant.model.Producto;
+import com.example.demo.tenant.repository.ProductoRepository;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
