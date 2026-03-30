@@ -7,7 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/productos")
@@ -30,6 +33,21 @@ public class ProductoController {
     @PostMapping
     public Producto crear(@RequestBody Producto producto) {
         return productoRepository.save(producto);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getVentaById(@PathVariable Long id) {
+        @SuppressWarnings("null")
+        Optional<Producto> venta = productoRepository.findById(id);
+
+        if (venta.isPresent()) {
+            return ResponseEntity.ok(venta.get());
+        } else {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "PRODUCTO_NOT_FOUND");
+            error.put("message", "Producto con ID " + id + " no encontrada");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+        }
     }
 
     @DeleteMapping("/{id}")
