@@ -12,9 +12,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+class TenantRequest {
+    private String name;
+
+    public TenantRequest() {
+    }
+
+    public TenantRequest(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
 @RestController
-@RequestMapping("/register-tenant")
+@RequestMapping("/api/register-tenant")
 public class TenantAdminController {
+
     private final TenantService tenantService;
     private final TenantRepository tenantRepository;
 
