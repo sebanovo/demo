@@ -3,7 +3,7 @@ package com.example.demo.tenant.dto;
 public class UserRequestDTO {
     private String email;
     private String password;
-    private String roleId;
+    private Long roleId;
 
     public UserRequestDTO() {
     }
@@ -24,11 +24,11 @@ public class UserRequestDTO {
         this.password = password;
     }
 
-    public String getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 }

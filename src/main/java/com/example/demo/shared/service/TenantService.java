@@ -40,9 +40,8 @@ public class TenantService {
         // Inserta el usuario administrador
         try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
             stmt.execute("SET search_path TO \"" + tenant + "\"");
-            String userId = java.util.UUID.randomUUID().toString();
-            String query = String.format("INSERT INTO users (id, email, password, role_id) VALUES ('%s', '%s', '%s', 'ROLE_ADMIN')", 
-                                         userId, adminEmail, encodedPassword);
+            String query = String.format("INSERT INTO users (email, password, role_id) SELECT '%s', '%s', id FROM roles WHERE name = 'ROLE_ADMIN'", 
+                                         adminEmail, encodedPassword);
             stmt.execute(query);
         } catch (Exception e) {
             throw new RuntimeException("Error insertando el administrador: " + e.getMessage(), e);

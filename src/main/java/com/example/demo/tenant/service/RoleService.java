@@ -24,7 +24,7 @@ public class RoleService {
                 .collect(Collectors.toList());
     }
 
-    public RoleResponseDTO getRoleById(String id) {
+    public RoleResponseDTO getRoleById(Long id) {
         Role role = roleRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
         return new RoleResponseDTO(role.getId(), role.getName());
@@ -32,13 +32,12 @@ public class RoleService {
 
     public RoleResponseDTO createRole(RoleRequestDTO request) {
         Role role = new Role();
-        role.setId(request.getId()); // Usualmente se envía como 'ROLE_NAME'
         role.setName(request.getName());
         role = roleRepository.save(role);
         return new RoleResponseDTO(role.getId(), role.getName());
     }
 
-    public void deleteRole(String id) {
+    public void deleteRole(Long id) {
         roleRepository.deleteById(id);
     }
 }

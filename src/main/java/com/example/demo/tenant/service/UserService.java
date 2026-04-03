@@ -31,15 +31,18 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserResponseDTO getUserById(String id) {
+    public UserResponseDTO getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         return mapToDTO(user);
     }
 
     public UserResponseDTO createUser(UserRequestDTO request) {
-        Role role = roleRepository.findById(request.getRoleId())
-                .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+        Role role = null;
+        if (request.getRoleId() != null) {
+            role = roleRepository.findById(request.getRoleId())
+                    .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+        }
 
         User user = new User();
         user.setEmail(request.getEmail());
@@ -50,12 +53,15 @@ public class UserService {
         return mapToDTO(user);
     }
 
-    public UserResponseDTO updateUser(String id, UserRequestDTO request) {
+    public UserResponseDTO updateUser(Long id, UserRequestDTO request) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         
-        Role role = roleRepository.findById(request.getRoleId())
-                .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+        Role role = null;
+        if (request.getRoleId() != null) {
+            role = roleRepository.findById(request.getRoleId())
+                    .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+        }
 
         user.setEmail(request.getEmail());
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
@@ -67,7 +73,7 @@ public class UserService {
         return mapToDTO(user);
     }
 
-    public void deleteUser(String id) {
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
@@ -75,8 +81,8 @@ public class UserService {
         return new UserResponseDTO(
                 user.getId(),
                 user.getEmail(),
-                user.getRole().getId(),
-                user.getRole().getName(),
+                user.getRole() != null ? user.getRole().getId() : null,
+                user.getRole() != null ? user.getRole().getName() : null,
                 user.getCreatedAt()
         );
     }

@@ -3,16 +3,16 @@ package com.example.demo.tenant.dto;
 import java.time.OffsetDateTime;
 
 public class UserResponseDTO {
-    private String id;
+    private Long id;
     private String email;
-    private String roleId;
+    private Long roleId;
     private String roleName;
     private OffsetDateTime createdAt;
 
     public UserResponseDTO() {
     }
 
-    public UserResponseDTO(String id, String email, String roleId, String roleName, OffsetDateTime createdAt) {
+    public UserResponseDTO(Long id, String email, Long roleId, String roleName, OffsetDateTime createdAt) {
         this.id = id;
         this.email = email;
         this.roleId = roleId;
@@ -20,11 +20,11 @@ public class UserResponseDTO {
         this.createdAt = createdAt;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -36,11 +36,11 @@ public class UserResponseDTO {
         this.email = email;
     }
 
-    public String getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 
