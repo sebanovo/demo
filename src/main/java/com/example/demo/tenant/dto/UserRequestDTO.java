@@ -1,11 +1,20 @@
 package com.example.demo.tenant.dto;
 
 public class UserRequestDTO {
+    private String name;
     private String email;
     private String password;
     private Long roleId;
 
     public UserRequestDTO() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

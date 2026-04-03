@@ -47,7 +47,8 @@ public class JwtService {
         if (currentTenant != null) {
             extraClaims.put("tenantId", currentTenant);
         }
-        extraClaims.put("role", user.getRole().getName());
+        // FIXED:
+        // extraClaims.put("role", user.getRole().getName());
         return generateToken(extraClaims, user);
     }
 

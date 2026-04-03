@@ -45,10 +45,11 @@ public class UserService {
         }
 
         User user = new User();
+        user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(role);
-        
+
         user = userRepository.save(user);
         return mapToDTO(user);
     }
@@ -56,13 +57,13 @@ public class UserService {
     public UserResponseDTO updateUser(Long id, UserRequestDTO request) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        
+
         Role role = null;
         if (request.getRoleId() != null) {
             role = roleRepository.findById(request.getRoleId())
                     .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
         }
-
+        user.setName(request.getName());
         user.setEmail(request.getEmail());
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -80,10 +81,10 @@ public class UserService {
     private UserResponseDTO mapToDTO(User user) {
         return new UserResponseDTO(
                 user.getId(),
+                user.getName(),
                 user.getEmail(),
                 user.getRole() != null ? user.getRole().getId() : null,
                 user.getRole() != null ? user.getRole().getName() : null,
-                user.getCreatedAt()
-        );
+                user.getCreatedAt());
     }
 }

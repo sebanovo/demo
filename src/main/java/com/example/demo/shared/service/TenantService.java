@@ -15,7 +15,7 @@ public class TenantService {
         this.dataSource = dataSource;
     }
 
-    public void createTenant(String tenant, String adminEmail, String encodedPassword) {
+    public void createTenant(String tenant, String adminName, String adminEmail, String encodedPassword) {
         if (tenant == null || !tenant.matches("[a-zA-Z0-9_]+")) {
             throw new IllegalArgumentException("Nombre de tenant inválido. Use solo letras, números y guiones bajos.");
         }
@@ -40,8 +40,10 @@ public class TenantService {
         // Inserta el usuario administrador
         try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
             stmt.execute("SET search_path TO \"" + tenant + "\"");
-            String query = String.format("INSERT INTO users (email, password, role_id) SELECT '%s', '%s', id FROM roles WHERE name = 'ROLE_ADMIN'", 
-                                         adminEmail, encodedPassword);
+            String query = String.format(
+                    "INSERT INTO users (name, email, password, role_id) SELECT '%s', '%s', '%s', id FROM roles WHERE name = 'ROLE_ADMIN'",
+                    adminName, adminEmail, encodedPassword);
+
             stmt.execute(query);
         } catch (Exception e) {
             throw new RuntimeException("Error insertando el administrador: " + e.getMessage(), e);

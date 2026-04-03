@@ -4,6 +4,7 @@ import java.time.OffsetDateTime;
 
 public class UserResponseDTO {
     private Long id;
+    private String name;
     private String email;
     private Long roleId;
     private String roleName;
@@ -12,8 +13,9 @@ public class UserResponseDTO {
     public UserResponseDTO() {
     }
 
-    public UserResponseDTO(Long id, String email, Long roleId, String roleName, OffsetDateTime createdAt) {
+    public UserResponseDTO(Long id, String name, String email, Long roleId, String roleName, OffsetDateTime createdAt) {
         this.id = id;
+        this.name = name;
         this.email = email;
         this.roleId = roleId;
         this.roleName = roleName;
@@ -26,6 +28,14 @@ public class UserResponseDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -59,4 +69,5 @@ public class UserResponseDTO {
     public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
 }
