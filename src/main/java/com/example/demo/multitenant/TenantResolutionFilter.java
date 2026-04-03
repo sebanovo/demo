@@ -81,12 +81,19 @@ public class TenantResolutionFilter extends OncePerRequestFilter {
     }
 
     private String resolveTenantFromRequest(HttpServletRequest request) {
+        // Primero intentar obtener del request attribute set by JwtAuthenticationFilter
+        String tenantFromJwt = (String) request.getAttribute("tenantIdFromJwt");
+        if (tenantFromJwt != null && !tenantFromJwt.isBlank()) {
+            return tenantFromJwt;
+        }
+
+        // Segundo intentar obtener del header X-Tenant-ID
         String tenant = request.getHeader(TENANT_HEADER);
         if (tenant != null && !tenant.isBlank()) {
             return tenant.trim();
         }
 
-        // // Segundo intentar obtener del subdominio
+        // // Tercero intentar obtener del subdominio
         // String host = request.getHeader("Host");
         // if (host != null && host.contains(".")) {
         // String subdomain = host.split("\\.")[0];

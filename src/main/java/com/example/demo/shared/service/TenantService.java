@@ -15,7 +15,7 @@ public class TenantService {
         this.dataSource = dataSource;
     }
 
-    public void createTenant(String tenant) {
+    public void createTenant(String tenant, String adminEmail, String encodedPassword) {
         if (tenant == null || !tenant.matches("[a-zA-Z0-9_]+")) {
             throw new IllegalArgumentException("Nombre de tenant inválido. Use solo letras, números y guiones bajos.");
         }
@@ -36,5 +36,16 @@ public class TenantService {
                 .load();
 
         flyway.migrate();
+
+        // Inserta el usuario administrador
+        try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
+            stmt.execute("SET search_path TO \"" + tenant + "\"");
+            String userId = java.util.UUID.randomUUID().toString();
+            String query = String.format("INSERT INTO users (id, email, password, role_id) VALUES ('%s', '%s', '%s', 'ROLE_ADMIN')", 
+                                         userId, adminEmail, encodedPassword);
+            stmt.execute(query);
+        } catch (Exception e) {
+            throw new RuntimeException("Error insertando el administrador: " + e.getMessage(), e);
+        }
     }
 }
